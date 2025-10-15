@@ -28,8 +28,9 @@ Each thread retrieves tasks from a shared queue and executes them in parallel. O
 ## 3 How to Run
 
 ```bash
-javac src/ThreadPool.java src/SumTask.java src/Main.java
-java src/Main
+cd src
+javac ThreadPool.java SumTask.java Main.java
+java Main
 ```
 
 ---
