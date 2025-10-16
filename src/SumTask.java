@@ -13,7 +13,7 @@ public class SumTask implements Runnable {
         this.end = end;
         this.partialSum = 0;
 
-        this.name = "SumTask = " + formatNumber(start) + " - " + formatNumber(end);
+        this.name = "SumTask = " + Helpers.formatNumber(start) + " - " + Helpers.formatNumber(end);
     }
 
     @Override
@@ -24,20 +24,12 @@ public class SumTask implements Runnable {
         }
         partialSum = sum;
         System.out.printf("%-15s %-40s %-15s%n",
-            Thread.currentThread().getName(), 
-            name, 
-            "sum = " + formatNumber(sum));
+            Thread.currentThread().getName(),
+            name,
+            "sum = " + Helpers.formatNumber(sum));
     }
 
     public long getPartialSum() {
         return partialSum;
-    }
-
-    private String formatNumber(int number) {
-        return String.format("%,d", number);
-    }
-
-    private String formatNumber(long number) {
-        return String.format("%,d", number);
     }
 }
