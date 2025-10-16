@@ -12,10 +12,13 @@ public class ThreadPool {
         this.poolSize = poolSize;
         this.taskQueue = new LinkedList<>();
         this.workers = new LinkedList<>();
+    }
 
+    public void startWorkers() {
         for (int i = 0; i < poolSize; i++) {
-            Worker worker = new Worker("Worker-" + i);
-            worker.start();
+            Worker worker = new Worker();
+            Thread thread = new Thread(worker, "Worker-" + i);
+            thread.start();
             workers.add(worker);
         }
     }
@@ -43,11 +46,7 @@ public class ThreadPool {
         notifyAll(); // Wake up all workers to exit
     }
 
-    private class Worker extends Thread {
-        public Worker(String name) {
-            super(name);
-        }
-
+    private class Worker implements Runnable {
         @Override
         public void run() {
             try {

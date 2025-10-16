@@ -16,6 +16,7 @@ public class Main {
         }
 
         ThreadPool pool = new ThreadPool(numThreads);
+        pool.startWorkers();
         List<SumTask> tasks = new ArrayList<>();
 
         // Divide work into 100 chunks (so more tasks than threads)
@@ -29,7 +30,7 @@ public class Main {
 
         // Wait for all tasks to finish (simple delay for demo)
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -43,6 +44,6 @@ public class Main {
             total += task.getPartialSum();
         }
 
-        System.out.println("\nFinal total sum = " + total);
+        System.out.println("\nFinal total sum = " + Helpers.formatNumber(total));
     }
 }
