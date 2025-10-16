@@ -86,3 +86,8 @@ This implementation demonstrates the **Thread Pooling architectural tactic** for
 ### Observations:
 * Performance improves significantly compared to a single-threaded implementation for large workloads.
 * The thread pool can easily be adapted for other computational or I/O-bound tasks.
+
+## 8 Documentation
+Thread Pool Sequence Diagram
+
+![Thread Pool Sequence](docs/ThreadPool_Sequence.png)
