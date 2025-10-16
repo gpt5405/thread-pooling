@@ -29,7 +29,7 @@ Each thread retrieves tasks from a shared queue and executes them in parallel. O
 
 ```bash
 cd src
-javac ThreadPool.java SumTask.java Main.java
+javac *.java
 java Main
 ```
 
@@ -37,12 +37,12 @@ java Main
 
 ## 4 Expected Output
 
-```bash
-Worker-0 completed: sum = 498743
-Worker-1 completed: sum = 512912
-Worker-2 completed: sum = 487210
+```console
+Worker-1        SumTask = 0 - 100,000                    sum = 4,956,451
+Worker-2        SumTask = 100,000 - 200,000              sum = 4,951,000
+Worker-3        SumTask = 300,000 - 400,000              sum = 4,943,148
 ...
-Final total sum = 499912345
+Final total sum = 494,963,753
 ```
 
 The console output shows multiple worker threads executing tasks in parallel, and the final summed result at the end.
@@ -58,36 +58,46 @@ The console output shows multiple worker threads executing tasks in parallel, an
 | **Main.java** | Generates data, submits multiple tasks to the pool, and aggregates partial results into a final total. |
 
 Key Design Points
-* **Thread reuse:** Threads are created once and reused for new tasks.
-* **Task queueing:** More tasks than threads are handled by queuing them.
-* **Synchronization:** Uses wait() and notify() to manage thread coordination safely.
-* **Scalability:** Can handle any number of tasks without creating new threads.
+
+- **Thread reuse:** Threads are created once and reused for new tasks.
+- **Task queueing:** More tasks than threads are handled by queuing them.
+- **Synchronization:** Uses wait() and notify() to manage thread coordination safely.
+- **Scalability:** Can handle any number of tasks without creating new threads.
 
 ---
 
 ## 6 Libraries Used
+
 Only standard Java libraries:
 
-* `java.util`
-* `java.lang`
+- `java.util`
+- `java.lang`
 
 No external dependencies or internet connections are required.
 
 ---
 
 ## 7 Discussion
+
 This implementation demonstrates the **Thread Pooling architectural tactic** for improving **performance** and **resource efficiency**.
 
-### Benefits:
-* Reduced thread creation overhead
-* Better CPU utilization through parallel execution
-* Controlled concurrency (fixed number of threads)
+### Benefits
 
-### Observations:
-* Performance improves significantly compared to a single-threaded implementation for large workloads.
-* The thread pool can easily be adapted for other computational or I/O-bound tasks.
+- Reduced thread creation overhead
+- Better CPU utilization through parallel execution
+- Controlled concurrency (fixed number of threads)
+
+### Observations
+
+- Performance improves significantly compared to a single-threaded implementation for large workloads.
+- The thread pool can easily be adapted for other computational or I/O-bound tasks.
 
 ## 8 Documentation
+
 Thread Pool Sequence Diagram
 
 ![Thread Pool Sequence](docs/ThreadPool_Sequence.png)
+
+Thread Pool Class Diagram
+
+![Thread Pool Class](docs/ThreadPool_Class.png)
